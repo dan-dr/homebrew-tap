@@ -16,6 +16,8 @@ jobs:
         run: |
           TAP_PATH="$(brew --repository dan-dr/tap)"
           ditto Casks "$TAP_PATH/Casks"
+      - name: Trust audit tap
+        run: brew trust dan-dr/tap
       - name: Audit casks
         run: |
           for cask in Casks/*.rb; do
