@@ -1,0 +1,23 @@
+name: Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v6
+      - name: Tap repository
+        run: brew tap-new dan-dr/tap --no-git
+      - name: Copy definitions
+        run: |
+          TAP_PATH="$(brew --repository dan-dr/tap)"
+          ditto Casks "$TAP_PATH/Casks"
+      - name: Audit casks
+        run: |
+          for cask in Casks/*.rb; do
+            brew audit --cask --strict "$(basename "$cask" .rb)"
+          done
