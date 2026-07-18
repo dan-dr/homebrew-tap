@@ -18,5 +18,6 @@ brew install --cask aquarium
 xattr -dr com.apple.quarantine /Applications/Aquarium.app
 ```
 
-The quarantine-clear command is currently required because Aquarium v0.1.0 is
-ad-hoc signed. Future notarized releases will install without it.
+The quarantine-clear command is currently required because Aquarium releases
+are ad-hoc signed. Future Developer ID signed and notarized releases will
+install without it.
